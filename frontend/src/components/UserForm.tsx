@@ -32,12 +32,12 @@ const UserForm: React.FC<UserFormProps> = ({ user, onSubmit }) => {
 
         try {
             const userData: UserData = { name, email, password };
-            if (user) {
-                await updateUser(user.id, userData);
-            } else {
-                await createUser(userData);
-            }
-            onSubmit();
+        if (user) {
+            await updateUser(user.id, userData);
+        } else {
+            await createUser(userData);
+        }
+        onSubmit();
             if (!user) {
                 setName('');
                 setEmail('');
@@ -53,47 +53,47 @@ const UserForm: React.FC<UserFormProps> = ({ user, onSubmit }) => {
     return (
         <div className="form-container">
             {error && <div className="error-message">{error}</div>}
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input
+                <input
                         id="name"
-                        type="text"
-                        value={name}
+                    type="text"
+                    value={name}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-                        required
+                    required
                         placeholder="Enter your name"
                         disabled={isLoading}
-                    />
-                </div>
+                />
+            </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input
+                <input
                         id="email"
-                        type="email"
-                        value={email}
+                    type="email"
+                    value={email}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                        required
+                    required
                         placeholder="Enter your email"
                         disabled={isLoading}
-                    />
-                </div>
+                />
+            </div>
                 <div className="form-group">
                     <label htmlFor="password">Password {user && '(leave empty to keep current)'}</label>
-                    <input
+                <input
                         id="password"
-                        type="password"
-                        value={password}
+                    type="password"
+                    value={password}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                        required={!user}
+                    required={!user}
                         placeholder={user ? 'Leave empty to keep current password' : 'Enter password'}
                         disabled={isLoading}
-                    />
-                </div>
+                />
+            </div>
                 <button type="submit" className="submit-button" disabled={isLoading}>
                     {isLoading ? 'Processing...' : user ? 'Update User' : 'Create User'}
                 </button>
-            </form>
+        </form>
 
             <style>{`
                 .form-container {

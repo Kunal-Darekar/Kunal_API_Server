@@ -2,15 +2,13 @@
 
 A full-stack user management application built with TypeScript, React, Node.js, and SQLite.
 
-## Application Screenshot
+## Application Screenshots
 
+### User Interface
 ![User Management System Screenshot](./assets/user.png)
 
-The application features a modern, responsive interface with:
-- Clean user creation form
-- User list with edit/delete functionality
-- Real-time user count
-- Material Design styling
+### Test Coverage
+![Test Coverage](./assets/test-coverage.png)
 
 ## Features
 
@@ -20,6 +18,10 @@ The application features a modern, responsive interface with:
 - 🎯 RESTful API endpoints
 - 🗄️ SQLite database with TypeORM
 - ✨ CRUD operations for user management
+- 🧪 Comprehensive test suite (93.75% coverage)
+- 🛡️ Type-safe codebase
+- 🔄 Real-time form validation
+- 📊 Detailed error handling
 
 ## Project Structure
 
@@ -27,10 +29,26 @@ The application features a modern, responsive interface with:
 kunal-api-server/
 ├── frontend/          # React TypeScript frontend
 ├── backend/           # Node.js TypeScript backend
+│   ├── src/          # Source code
+│   │   ├── __tests__/     # Test suites (46 tests)
+│   │   ├── controllers/   # Request handlers
+│   │   ├── models/       # Data models
+│   │   └── routes/       # API routes
+│   └── coverage/     # Test coverage reports
 ├── assets/           # Project assets and images
 ├── README.md         # Main documentation
 └── API_DOCUMENTATION.md # API endpoints documentation
 ```
+
+## Test Coverage
+
+The backend includes a comprehensive test suite with:
+- 46 automated tests
+- 4 test suites
+- 93.75% overall coverage
+- 100% coverage for models and routes
+- 97.18% coverage for controllers
+- Includes unit tests, integration tests, and API tests
 
 ## Prerequisites
 
@@ -42,7 +60,7 @@ kunal-api-server/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Kunal-Darekar/Kunal_API_Server
    cd kunal-api-server
    ```
 
@@ -62,10 +80,26 @@ kunal-api-server/
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+## Running Tests
+
+### Backend Tests
+```bash
+cd backend
+npm test          # Run tests
+npm run test:coverage  # Run tests with coverage report
+```
+
+### Frontend Tests (Coming Soon)
+```bash
+cd frontend
+npm test
+```
+
 ## Environment Variables
 
 ### Backend
 - `PORT`: Server port (default: 5001)
+- `NODE_ENV`: Environment ('development' | 'test' | 'production')
 
 ### Frontend
 - `REACT_APP_API_URL`: Backend API URL (default: http://localhost:5001/api)
@@ -75,6 +109,7 @@ kunal-api-server/
 - Backend runs on port 5001
 - Frontend runs on port 3000
 - SQLite database is created automatically
+- Tests run in-memory SQLite database
 
 ## Technologies Used
 
@@ -90,6 +125,7 @@ kunal-api-server/
 - TypeScript
 - TypeORM
 - SQLite
+- Jest & Supertest
 
 ## Contributing
 
@@ -98,4 +134,5 @@ kunal-api-server/
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
 
