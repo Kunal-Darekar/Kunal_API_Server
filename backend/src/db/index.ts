@@ -1,18 +1,16 @@
-import { MongoClient } from 'mongodb';
+import { createConnection, Connection } from 'typeorm';
+import { User } from '../models/userModel';
 
-const uri = 'your_mongodb_connection_string'; // Replace with your MongoDB connection string
-const client = new MongoClient(uri);
-
-export const connectToDatabase = async () => {
-    try {
-        await client.connect();
-        console.log('Connected to the database');
-    } catch (error) {
-        console.error('Database connection error:', error);
-        throw error;
-    }
+export const initializeDatabase = async (): Promise<Connection> => {
+    return createConnection({
+        type: "sqlite",
+        database: process.env.NODE_ENV === 'test' ? ':memory:' : "database.sqlite",
+        entities: [User],
+        synchronize: true,
+        logging: process.env.NODE_ENV !== 'test'
+    });
 };
 
 export const getDatabase = () => {
-    return client.db('your_database_name'); // Replace with your database name
+    return null; // Not needed for SQLite/TypeORM setup
 };

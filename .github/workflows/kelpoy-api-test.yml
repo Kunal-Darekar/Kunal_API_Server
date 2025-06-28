@@ -32,7 +32,6 @@ jobs:
       run: |
         cd backend
         npm ci
-        npm run build
 
     - name: Install Keploy
       run: |
@@ -75,12 +74,12 @@ jobs:
     - name: Run Jest Unit Tests with Coverage
       run: |
         cd backend
-        npm run test:coverage
+        npm test -- --coverage
 
     - name: Run Integration Tests
       run: |
         cd backend
-        npm test -- --testPathPattern="integration" --verbose
+        npm test -- --testPathPatterns="integration" --verbose
 
     - name: Run Smoke Tests
       run: |
@@ -200,12 +199,11 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
 
-    - name: Build production image
+    - name: Install production dependencies
       run: |
-        echo "Building production-ready application..."
+        echo "Installing production dependencies..."
         cd backend
         npm ci --only=production
-        npm run build
         
     - name: Run production smoke tests
       run: |
@@ -238,7 +236,7 @@ jobs:
         echo "🚀 Deployment Summary:"
         echo "====================="
         echo "✅ All tests passed"
-        echo "✅ Production build completed"
+        echo "✅ Production dependencies installed"
         echo "✅ Production smoke tests passed"
         echo ""
         echo "📋 Next steps:"

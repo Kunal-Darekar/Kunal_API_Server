@@ -32,7 +32,6 @@ jobs:
       run: |
         cd backend
         npm ci
-        npm install -g jest
 
     - name: Start backend server
       run: |
@@ -66,7 +65,7 @@ jobs:
       run: |
         # Run API tests and capture output
         cd backend
-        npm test -- --testPathPattern="api" --verbose 2>&1 | tee ../api_test.log
+        npm test -- --testPathPatterns="api" --verbose 2>&1 | tee ../api_test.log
         
         # Create test results summary
         echo '{"total_tests": 8, "passed": 8, "failed": 0, "api_tests": "completed"}' > ../test_results.json
@@ -158,12 +157,11 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
 
-    - name: Build production application
+    - name: Install production dependencies
       run: |
-        echo "Building production-ready application..."
+        echo "Installing production dependencies..."
         cd backend
         npm ci --only=production
-        npm run build
         
     - name: Run production smoke tests
       run: |
@@ -196,7 +194,7 @@ jobs:
         echo "🚀 Deployment Summary:"
         echo "====================="
         echo "✅ All tests passed"
-        echo "✅ Production build completed"
+        echo "✅ Production dependencies installed"
         echo "✅ Production smoke tests passed"
         echo ""
         echo "📋 Next steps:"

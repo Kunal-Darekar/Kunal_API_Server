@@ -32,7 +32,6 @@ jobs:
       run: |
         cd backend
         npm ci
-        npm install -g jest
 
     - name: Start backend server
       run: |
@@ -66,7 +65,7 @@ jobs:
       run: |
         # Run API tests and capture output
         cd backend
-        npm test -- --testPathPattern="api" --verbose 2>&1 | tee ../api_test.log
+        npm test -- --testPathPatterns="api" --verbose 2>&1 | tee ../api_test.log
         
         # Create test results summary
         echo '{"total_tests": 8, "passed": 8, "failed": 0, "api_tests": "completed"}' > ../test_results.json
@@ -75,7 +74,7 @@ jobs:
     - name: Run integration tests
       run: |
         cd backend
-        npm test -- --testPathPattern="integration" --verbose --coverage
+        npm test -- --testPathPatterns="integration" --verbose --coverage
 
     - name: Run smoke tests
       run: |
@@ -85,7 +84,7 @@ jobs:
         
         echo "Testing /api/users endpoint (POST)..."
         curl -f -X POST -H "Content-Type: application/json" \
-          -d '{"task":"Smoke test task","name":"Smoke Test User","email":"smoke@test.com","password":"testpass"}' \
+          -d '{"name":"Smoke Test User","email":"smoke@test.com","password":"testpass"}' \
           http://localhost:$PORT/api/users || exit 1
 
     - name: Stop backend server
