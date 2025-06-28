@@ -157,11 +157,11 @@ jobs:
         cache: 'npm'
         cache-dependency-path: backend/package-lock.json
 
-    - name: Install production dependencies
+    - name: Install all dependencies
       run: |
-        echo "Installing production dependencies..."
+        echo "Installing all dependencies for production..."
         cd backend
-        npm ci --only=production
+        npm ci
         
     - name: Run production smoke tests
       run: |
@@ -194,7 +194,7 @@ jobs:
         echo "🚀 Deployment Summary:"
         echo "====================="
         echo "✅ All tests passed"
-        echo "✅ Production dependencies installed"
+        echo "✅ All dependencies installed"
         echo "✅ Production smoke tests passed"
         echo ""
         echo "📋 Next steps:"

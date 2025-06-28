@@ -15,7 +15,8 @@
     "express": "^4.18.2",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.1.7",
-    "typeorm": "0.2.45"
+    "typeorm": "0.2.45",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -27,7 +28,6 @@
     "jest": "^30.0.2",
     "supertest": "^7.1.1",
     "ts-jest": "^29.4.0",
-    "ts-node": "^10.9.2",
     "typescript": "^4.5.5"
   },
   "author": "Your Name",
