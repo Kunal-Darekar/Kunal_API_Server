@@ -47,8 +47,8 @@ A custom API server for managing user data, built with Express, TypeScript, and 
 
 1. Start the server:
    ```bash
-   npm start
-   ```
+npm start
+```
    The server will start on http://localhost:5001
 
 ### Running Tests

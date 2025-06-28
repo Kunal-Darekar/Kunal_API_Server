@@ -47,7 +47,6 @@ const App: React.FC = () => {
         setSelectedUser(null);
         fetchUsers();
     };
-
     return (
         <div className="app-container">
             <header className="app-header">
@@ -321,8 +320,8 @@ const App: React.FC = () => {
                     }
                 }
             `}</style>
-        </div>
-    );
+      </div>
+  );
 };
 
 export default App;

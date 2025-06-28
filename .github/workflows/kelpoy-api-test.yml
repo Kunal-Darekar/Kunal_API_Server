@@ -1,0 +1,48 @@
+name: API Testing with Keploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: backend/package-lock.json
+
+    - name: Install backend dependencies
+      run: |
+        cd backend
+        npm install
+
+    - name: Install Keploy
+      run: |
+        curl --silent -O -L https://keploy.io/install.sh
+        chmod +x install.sh
+        sudo ./install.sh
+
+    - name: Start backend server
+      run: |
+        cd backend
+        npm start &
+        sleep 10 # Wait for server to start
+
+    - name: Run Keploy Tests
+      run: |
+        keploy test -c backend/openapi.yaml --delay 2000 --url http://localhost:5001/api/users
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: keploy-test-results
+        path: backend/keploy/test-results 
